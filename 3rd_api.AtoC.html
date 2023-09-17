@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to Cart</title>
+</head>
+<body onload="viewCart()">
+    <h1>Cart Product Details</h1>
+    <h2><a href="1st_api.html" style="text-decoration: none;">Shop More</a></h2>
+    <hr>
+
+    <div id="result">
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <script>
+        function viewCart()
+        {
+            if (localStorage.getItem("allcarts"))
+            {
+                var allcarts= JSON.parse(localStorage.getItem("allcarts"));
+                var length= allcarts.length;
+
+                if(length>0)
+                {
+                    var temp = "";
+                    temp +="Total No. of Products: "+length +"<br>";
+                    //check cart id is available in the product or not
+
+
+                    $.ajax({
+                        url:"https://dummyjson.com/products",
+                        method:"get",
+                        data:{},//for informetion
+                        success: function(response)//for fetch
+                        {   
+                            var products = response.products;//response in products
+                            
+                                temp += "<table border='2'>";
+                                temp += "<tr>";
+                                temp += "<th> Name</th>";
+                                temp += "<th> Price</th>";
+                                temp += "<th> Quantity</th>";
+                                temp += "<th> Amount</th>";
+                                temp += "<th> Action</th>";
+                                temp += "</tr>";
+
+
+                            for(i=0; i<products.length;i++)
+                            {                    
+                                var flag = 0;
+                                for(j=0; j<allcarts.length; j++)
+                                {
+                                    if(allcarts[j].id == products[i].id)
+                                    {
+                                        flag = 1;
+                                        break;
+                                    }
+                                }
+                                if(flag == 1)
+                                {
+                                    //temp += products[i].title + "<br>";
+                                    temp += "<tr>";
+                                    temp += "<td> "+products[i].title+"</td>";
+                                    temp += "<td>"+products[i].price+"</td>";
+                                    temp += "<td>1</td>";
+                                    temp += "<td>"+products[i].price+"</td>";
+                                    temp += "<td> <button onclick='increaseCart(this)'>+</button> | <button>-</button> </td>";
+                                    temp += "</tr>";
+                                }
+                            }
+                            
+                                temp += "<tr>";
+                                temp += "<td colspan = 3> Total Amount Payable</td>";
+                                temp += "<td> 0 Rs.</td>";
+                                temp += "<td> <button> Pay Now</button></td>";
+                                temp += "</tr>";
+                                temp += "</table>";
+
+                            document.getElementById("result").innerHTML = temp;
+                        }
+
+                        })
+                    
+
+                    document.getElementById('result').innerHTML =temp;
+                }
+                else{
+                    document.getElementById('result').innerHTML ="There are no products in cart";
+                }
+            }
+            else
+            {
+                document.getElementById("numberOfCount").innerHTML = "Cart is not Available";
+            }
+        }
+    </script>
+</body>
+</html>

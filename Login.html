@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        body {
+            background-size: cover;
+            background-image: url("sky.jpg");
+        }
+
+        a{
+        text-decoration: none;
+        }
+        .nav
+        {
+            height: 80px;
+            width: 70%;
+            padding: 0 20px;
+            margin: 0 auto;
+        
+        }
+        .nav_item
+        {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content:space-around;
+        }
+        .nav-link
+        {
+            color: aqua;
+            font-size: 18px;
+        }
+        .nav-link:hover
+    {
+        font-size: 16px;
+        color: rgb(200, 23, 227);
+        box-shadow: 4px 3px 6px 3px powderblue;
+        padding: 6px 24px;
+        border: 2px solid rgb(200, 23, 229);
+    }
+
+        .home {
+            position: relative;
+            height: 22%;
+            width: 100%;
+            margin-left: 0.1%;
+            margin-top: 20%;
+            background: transparent;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .form_container {
+            position: absolute;
+            max-width: 550px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 101;
+            background: #e5e8f311;
+            padding: 25px;
+            border-radius: 10px;
+            color: #fff;
+        }
+
+        .ch {
+            color: aqua;
+        }
+
+        .sbtn {
+            padding: 6px 24px;
+            border: 2px solid aquamarine;
+            background: transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            color: bisque;
+            margin-left: 168%;
+            font-size: 15px;
+        
+        }
+        .sbtn:active
+        {
+            transform: scale(0.90);
+        }
+
+    input[type="text"],
+        input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <ul class="nav">
+        <li class="nav_item">
+            <a href="1st_api.html" class="nav-link">Home</a>
+            <a href="1st_api.html" class="nav-link">Product</a>
+            <a href="contactlist-delete.html" class="nav-link">Service</a>
+            <a href="contactlist-delete.html" class="nav-link">Contact</a>
+        </li>
+    </ul>
+
+    <header>
+        <div class="home">
+            <div class="form_container">
+                <form onsubmit="event.preventDefault(),login()">
+                    <h2>Login</h2>
+                    <table>
+                        <tr>
+                            <td>
+                                Enter Your Name
+                            </td>
+                            <td><input type="text" id="name" placeholder="       Enter Your Name" required></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Enter Your Password
+                            </td>
+                            <td><input type="password" id="password" placeholder="    Enter Your Password" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" value="Login" class="sbtn"></td>
+                        </tr>
+                        <tr>
+                            <td id="message"></td>
+                        </tr>
+                    </table>
+                    <p><b>Don't have an account? <a href="Registration.html" class="ch">Sign Up here!</a></b></p>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        function login() {
+            var name = document.getElementById("name").value;
+            var password = document.getElementById("password").value;
+
+            var userData = JSON.parse(localStorage.getItem("newuser"));
+            if (userData) {
+                var match = userData.find(function (user) {
+                    return user.name === name && user.password === password;
+                });
+                if (match) {
+                    window.location.href = '1st_api.html';
+                }
+                else {
+                    document.getElementById('message').innerHTML = "Not Registered";
+                }
+            }
+            else {
+                document.getElementById('message').innerHTML = "404 not found";
+            }
+            setTimeout(function () {
+                document.getElementById("message").style.display = "none";
+            }, 2000);
+
+            clear();
+    function clear()
+    {
+        document.getElementById("name").value = "";
+        document.getElementById("password").value = "";
+    }
+        }
+
+    </script>
+</body>
+
+</html>

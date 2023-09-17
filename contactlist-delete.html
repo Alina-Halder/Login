@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact list</title>
+</head>
+
+<body onload="display()">
+    <form onsubmit="event.preventDefault(); save()">
+        <table>
+            <p><b>Don't have an account? <a href="Registration.html" class="ch">Sign Up here!</a></b></p>
+            <tr>
+                <td>Enter Your First Name</td>
+                <td><input type="text" id="name" placeholder="Enter Your Name" required></td>
+            </tr>
+            <tr>
+                <td>Enter Your Phone No.</td>
+                <td><input type="tel" id="phone" placeholder="Enter Your Phone No." required></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Save" id="savebtn"></td>
+            </tr>
+            <tr>
+                <td id="message"></td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <h1>Contact Details</h1>
+    <hr>
+    <div id="result">
+
+    </div>
+
+    <script>
+        var globalbtn = "";
+        function save() {
+            var name = document.getElementById("name").value;
+            var phone = document.getElementById("phone").value;
+            var editvalue = document.getElementById("savebtn").value;
+
+            var user = { "name": name, "phone": phone };
+
+
+            if (editvalue == "Save") {
+                if (localStorage.getItem("newuser")) {
+                    var newuser = JSON.parse(localStorage.getItem("newuser"));
+                    newuser.push(user);
+                    localStorage.setItem("newuser", JSON.stringify(newuser));
+                }
+                else {
+                    var newuser = [user];
+                    newuser.push(user);
+                    localStorage.setItem("newuser", JSON.stringify(newuser));
+                }
+                document.getElementById("message").innerHTML = "success adding contacts";
+            }
+            else {
+                if (localStorage.getItem("newuser")) {
+                    var newuser = JSON.parse(localStorage.getItem("newuser"));
+                    for (i = 0; i < newuser.length; i++) {
+                        if (newuser[i].phone == phone) {
+                            newuser[i].name = name;
+                        }
+                        localStorage.setItem("newuser", JSON.stringify(newuser));
+                        document.getElementById("message").innerHTML = "success edditing contacts";
+                        document.getElementById("savebtn").value = "Save";
+                    }
+                }
+            }
+
+            document.getElementById("phone").readOnly = false;
+
+            setTimeout(function () {
+                document.getElementById("message").style.display = "none";
+            }, 2000);
+
+            display();
+            clear(); // function callout
+        }
+        function clear() //function create
+        {
+            document.getElementById("name").value = "";
+            document.getElementById("phone").value = "";
+        }
+        function display() {
+
+            if (localStorage.getItem("newuser")) {
+                var newuser = JSON.parse(localStorage.getItem("newuser"));
+
+                var star = "<table border=5;>"; //table start
+                star = star + "<tr><th>Name</th><th>Phone No.</th><th colspan='2'>Action</th></tr>"; // table head 
+                for (i = 0; i < newuser.length; i++) {
+                    var star = star + "<tr>"; // tr start
+                    star = star + "<td>" + newuser[i].name + "</td>";
+                    star = star + "<td>" + newuser[i].phone + "</td>";
+                    star = star + "<td><a onclick='editContact(" + newuser[i].phone + ")'>Edit</a></td>";
+                    star = star + "<td><a onclick='deleteContact(" + newuser[i].phone + ")'>Delete</a></td>";
+                    var star = star + "</tr>"; // tr end
+                }
+                star = star + "</table>";// table end
+                document.getElementById("result").innerHTML = star;
+
+            }
+        }
+        function editContact(phone) {
+            globalbtn = phone;
+            if (localStorage.getItem("newuser")) {
+                var newuser = JSON.parse(localStorage.getItem("newuser"));
+                for (i = 0; i < newuser.length; i++) {
+                    if (newuser[i].phone == phone) {
+                        document.getElementById("name").value = newuser[i].name;
+                        document.getElementById("phone").value = newuser[i].phone;
+                        document.getElementById("phone").readOnly = true;
+                        document.getElementById("savebtn").value = "update";
+                        break;
+                    }
+                    else
+                    {
+                        document.getElementById("phone").readOnly = false;
+                    }
+                }
+                localStorage.setItem("newuser", JSON.stringify(newuser));
+            }
+        }
+        function deleteContact(phone) {
+            if (confirm("are you sure?")) {
+                if (localStorage.getItem("newuser")) {
+                    var newuser = JSON.parse(localStorage.getItem("newuser"));
+                    var temp = [];
+                    for (i = 0; i < newuser.length; i++) {
+                        if (newuser[i].phone != phone) {
+                            temp.push(newuser[i])
+                        }
+                        
+                        localStorage.setItem("newuser", JSON.stringify(temp));
+                    }
+                    display();
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>

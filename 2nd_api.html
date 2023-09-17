@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Details</title>
+    <style>
+        .products
+        {
+            width: 22%;
+            height: 22%;
+            margin: 15px;
+            padding: 20px;
+            float:left;
+            border-radius: 8px;
+            box-shadow: 2px 4px 8px 8px palevioletred;
+        }
+        .products img
+        {
+            width: 100%;
+            height: 150px;
+            border-radius: 8px;
+            margin: auto;
+        }
+        .products h2,h3,h4,p,strong
+        {
+            text-align: center;
+            
+        }
+        .products button
+        {
+            margin-left: 8px;
+            padding: 8px;
+            box-shadow: 4px 4px 6px 4px paleturquoise;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body onload="viewDetais()">
+    <div class="main" id="result">
+        
+    </div>
+
+    <script>
+        function viewDetais(){
+            var id= localStorage.getItem("id");
+            $.ajax({
+                url:"https://dummyjson.com/products",
+                method:"get",
+                data:{},
+                success:function(response){
+                    var products= response.products;
+                    var temp= "";
+                    for(i=0;i<products.length;i++){
+                        if(products[i].id==id){
+                temp+= '<div class="products">';
+            temp+= '<img src='+products[i].thumbnail+' alt="image">';
+            temp+= '<h2>Title= '+products[i].title+'</h2>';
+            temp+= '<h3>Brand= '+products[i].brand+'</h3>';
+            temp+= '<h4>Price= '+products[i].price+'</h4>';
+            temp+= '<p><b>Stock= '+products[i].stock+'</b></p>';
+            temp+= '<p><b>Rating= '+products[i].rating+'</b></p>';
+            temp+= '<p><b>Category= '+products[i].category+'</b></p>';
+            temp+= '<p><b>DiscountPercentage= '+products[i].discountPercentage+'</b></p>';           
+            temp+= '<strong>Description= '+products[i].description+'</strong>';
+            temp+= '<p><button onclick="addCart('+products[i].id+')">Buy Now</button></p>';
+                temp+= '</div>';
+                        }
+                    }
+                    document.getElementById("result").innerHTML= temp;
+                }
+                
+            })
+        }
+
+        // function addCart(id)//for-A2C btn press kore localstorage a product id and default quantity(1) store  
+        // {
+        //     if (localStorage.getItem("allcarts"))//checks that allcart array variable exists or not in localstorage
+        //     {
+        //         var allcarts= JSON.parse(localStorage.getItem("allcarts"));//in localstorage its bydefault string, so we need to convert in array.then typecasting 
+        //         var cart = {"id":id,"quantity":1};//create object
+
+        //         allcarts.push(cart);//age j id or details a6e tate new id generate kora holo add korlm
+
+        //         localStorage.setItem('allcarts',JSON.stringify(allcarts));
+
+        //         alert('Product Added into Cart');
+        //     }
+        //     else
+        //     {
+        //         var allcarts = [];
+        //         var cart = {"id":id,"quantity":1};
+
+        //         allcarts.push(cart);
+
+        //         localStorage.setItem('allcarts',JSON.stringify(allcarts));
+
+        //         alert('Product Added into Cart');
+
+        //     }
+
+        // }
+         
+        function addCart(id){
+        localStorage.setItem("id",id);
+        window.location.href="3rd_api.AtoC.html";
+        }
+
+        
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+</body>
+</html>
