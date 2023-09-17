@@ -1,120 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
     <style>
-     
-    body
-    {
-        background-size: cover;
-        background-image: url("n3.jpg");
-    }
-    a{
-        text-decoration: none;
-    }
-    .nav
-    {
-        height: 80px;
-        width: 70%;
-        padding: 0 20px;
-        margin: 0 auto;
-      
-    }
-    .nav_item
-    {
-        display: flex;
-        height: 100%;
-        align-items: center;
-        justify-content:space-around;
-    }
-    .nav-link
-    {
-        font-size: 18px;
-        color: aqua;
-    }
-    .nav-link:hover
-    {
-        font-size: 16px;
-        color: rgb(200, 23, 227);
-        box-shadow: 4px 3px 6px 3px powderblue;
-        padding: 6px 24px;
-        border: 2px solid rgb(200, 23, 229);
-    }
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    input[type="password"] 
-    {
-        width: 80%;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-    }
-    .button{
-        font-size: 15px;
-        padding: 6px 24px;
-        border: 2px solid rgb(200, 23, 229);
-        background: transparent;
-        border-radius: 6px;
-        cursor: pointer;
-        color: aqua;
-        box-shadow: 4px 3px 6px 3px powderblue;
-    }
-    .button:active
-    {
-        transform: scale(0.90);
-    }
-    .home
-    {
-        position: relative;
-        height: 22%;
-        width: 100%;
-        margin-left: 0.1%;
-        margin-top: 20%;
-        background: transparent;
-        background-size: cover;
-        background-position: center;
-    }
+        body {
+            background-size: cover;
+            background-image: url("n3.jpg");
+        }
 
-    .form_container
-    {
-        position: absolute;
-        max-width: 550px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 101;
-        background: #e5e8f311;
-        padding: 25px;
-        border-radius: 10px;
-        color: #fff;
-    }
+        a {
+            text-decoration: none;
+        }
 
-    .sbtn
-    {
-        font-size: 15px;
-        padding: 6px 24px;
-        border: 2px solid burlywood;
-        background: transparent;
-        border-radius: 6px;
-        cursor: pointer;
-        color: aliceblue;
-        margin-left: 166%;
-    }
-    .sbtn:active
-    {
-        transform: scale(0.90);
-    }
-    .ch
-    {
-        color: aqua;
-    }
-   
+        .nav {
+            height: 80px;
+            width: 70%;
+            padding: 0 20px;
+            margin: 0 auto;
+
+        }
+
+        .nav_item {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .nav-link {
+            font-size: 18px;
+            color: aqua;
+        }
+
+        .nav-link:hover {
+            font-size: 16px;
+            color: rgb(200, 23, 227);
+            box-shadow: 4px 3px 6px 3px powderblue;
+            padding: 6px 24px;
+            border: 2px solid rgb(200, 23, 229);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .button {
+            font-size: 15px;
+            padding: 6px 24px;
+            border: 2px solid rgb(200, 23, 229);
+            background: transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            color: aqua;
+            box-shadow: 4px 3px 6px 3px powderblue;
+        }
+
+        .button:active {
+            transform: scale(0.90);
+        }
+
+        .home {
+            position: relative;
+            height: 22%;
+            width: 100%;
+            margin-left: 0.1%;
+            margin-top: 20%;
+            background: transparent;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .form_container {
+            position: absolute;
+            max-width: 550px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 101;
+            background: #e5e8f311;
+            padding: 25px;
+            border-radius: 10px;
+            color: #fff;
+        }
+
+        .sbtn {
+            font-size: 15px;
+            padding: 6px 24px;
+            border: 2px solid burlywood;
+            background: transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            color: aliceblue;
+            margin-left: 166%;
+        }
+
+        .sbtn:active {
+            transform: scale(0.90);
+        }
+
+        .ch {
+            color: aqua;
+        }
+
+        @media only screen and (max-width:600px) {
+            body {
+                background-repeat: no-repeat;
+                background-size: 80em;
+                background-position: top center;
+            }
+
+            .nav {
+                width: 100%;
+                height: auto;
+                padding: 10px 0px;
+            }
+
+            .nav_item {
+                display: block;
+                text-align: center;
+                margin: 10px 6px;
+            }
+
+            .nav-link {
+                font-size: 15px;
+                margin: 3px;
+            }
+
+            .home {
+                margin-top: 26%;
+            }
+
+            input[type="text"],
+            input[type="password"] {
+                width: 80%;
+                font-size: 12px;
+                margin: 8px;
+                padding: 8px;
+            }
+
+            .form_container {
+                width: 70%;
+                margin-top: 40%;
+                padding: 15px;
+
+            }
+
+            .sbtn {
+                margin-left: 110%;
+            }
+        }
     </style>
 </head>
+
 <body>
     <div class="navbar">
         <ul class="nav">
@@ -123,93 +170,96 @@
                 <a href="1st_api.html" class="nav-link">Product</a>
                 <a href="contactlist-delete.html" class="nav-link">Service</a>
                 <a href="contactlist-delete.html" class="nav-link">Contact</a>
-                <a href="Login.html" class="ch"><button type="button" class="button">Login</button></a>  
-                
+                <a href="Login.html" class="ch"><button type="button" class="button">Login</button></a>
+
             </li>
-            </ul>
+        </ul>
     </div>
- 
-    
-        <div class="home">
-            <div class="form_container">
-                <form onsubmit="event.preventDefault(); save()">
-                    <h2>Registration</h2>
-                    <table>
-                        <tr>
-                            <td>
-                                Enter Your Name 
-                            </td>
-                            <td><input type="text" id="name" placeholder="       Enter Your Name" required></td>
-                        </tr>
-                        <tr>
-                            <tr>
-                                <td>Enter Your Phone No.</td>
-                                <td><input type="tel" id="phone" placeholder="    Enter Your Phone No." required></td>
-                            </tr>
-                        <tr>
-                            <tr>
-                                <td>
-                                    Enter Your Email id
-                                </td>
-                                <td><input type="text" id="email" placeholder="     Enter Your email-id" required></td>
-                            </tr>
-                            <tr>
-                                <tr>
-                                    <td>
-                                        Enter Your Password
-                                    </td>
-                                    <td><input type="password" id="password" placeholder="    Enter Your Password" required></td>
-                                    <i class="uil uil-eye-slash pw-hide"></i>
-                                </tr>
-                                <tr>
-                            <td><p><a href="Login.html" class="ch"><input type="submit" value="Save" id="savebtn" class="sbtn"></a></p></td>
-                        </tr>
-                        <tr>
-                            <td id="message"></td>
-                        </tr>                       
-                    </table>
-                    <b><p>Already have an account?<a href="Login.html" class="ch">Click here</a></p></b>
-                </form>
-            </div>
+
+
+    <div class="home">
+        <div class="form_container">
+            <form onsubmit="event.preventDefault(); save()">
+                <h2>Registration</h2>
+                <table>
+                    <tr>
+                        <td>
+                            Enter Your Name
+                        </td>
+                        <td><input type="text" id="name" placeholder="       Enter Your Name" required></td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td>Enter Your Phone No.</td>
+                        <td><input type="tel" id="phone" placeholder="    Enter Your Phone No." required></td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td>
+                            Enter Your Email id
+                        </td>
+                        <td><input type="text" id="email" placeholder="     Enter Your email-id" required></td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td>
+                            Enter Your Password
+                        </td>
+                        <td><input type="password" id="password" placeholder="    Enter Your Password" required></td>
+                        <i class="uil uil-eye-slash pw-hide"></i>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><a href="Login.html" class="ch"><input type="submit" value="Save" id="savebtn"
+                                        class="sbtn"></a></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="message"></td>
+                    </tr>
+                </table>
+                <b>
+                    <p>Already have an account?<a href="Login.html" class="ch">Click here</a></p>
+                </b>
+            </form>
         </div>
-    
-    
-    
-<script>
-    function save()
-    {
-        var name =document.getElementById("name").value;
-        var phone =document.getElementById("phone").value;
-        var email =document.getElementById("email").value;
-        var password =document.getElementById("password").value;
+    </div>
 
-        var user= {"name": name,"phone":phone, "email":email, "password": password};
 
-        if(localStorage.getItem("newuser")){
-            var newuser = JSON.parse(localStorage.getItem("newuser"));
-            newuser.push(user);
-            localStorage.setItem("newuser", JSON.stringify(newuser));
+
+    <script>
+        function save() {
+            var name = document.getElementById("name").value;
+            var phone = document.getElementById("phone").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            var user = { "name": name, "phone": phone, "email": email, "password": password };
+
+            if (localStorage.getItem("newuser")) {
+                var newuser = JSON.parse(localStorage.getItem("newuser"));
+                newuser.push(user);
+                localStorage.setItem("newuser", JSON.stringify(newuser));
+            }
+            else {
+                var newuser = [user];
+                newuser.push(user);
+                localStorage.setItem("newuser", JSON.stringify(newuser));
+            }
+            document.getElementById("message").innerHTML = "successfully added details";
+            setTimeout(function () {
+                document.getElementById("message").style.display = "none";
+            }, 2000);
+
+            clear();
+            function clear() {
+                document.getElementById("name").value = "";
+                document.getElementById("phone").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("password").value = "";
+            }
         }
-        else {
-            var newuser = [user];
-            newuser.push(user);
-            localStorage.setItem("newuser", JSON.stringify(newuser));
-        }
-        document.getElementById("message").innerHTML = "successfully added details";
-        setTimeout(function(){
-        document.getElementById("message").style.display = "none";
-    },2000);
-   
-    clear();
-    function clear()
-    {
-        document.getElementById("name").value = "";
-        document.getElementById("phone").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("password").value = "";
-    }
-    }
-</script>
+    </script>
 </body>
 
 </html>
